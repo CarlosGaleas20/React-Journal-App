@@ -35,7 +35,7 @@ export const startRegisterWithEmail = (email, password, name) =>{
         firebase.auth().createUserWithEmailAndPassword(email, password)
          .then( async({user}) => {
              await user.updateProfile({displayName: name});
-             dispatch(login(email, password));
+             dispatch(login(user.uid, user.displayName));
              Swal.fire({
                 icon: 'success',
                 title: 'User successfully registered',
